@@ -21,3 +21,24 @@ INSERT INTO posts (
 Title, Body, Author, Created_at) 
 VALUES (
 'New feature', 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.', 'Chris', '2013-12-14');
+
+CREATE TABLE comments (
+    id int(11) AUTO_INCREMENT,
+    author varchar(255) NOT NULL,
+    text text NOT NULL,
+    post_id int(11) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (post_id) REFERENCES posts(id)
+);
+
+INSERT INTO comments (
+author, text, post_id) 
+VALUES ('Marija', 'jfskdjfksjfčjfčjkjfkfčeirifkvnkvhshiffjv fjoifjijaskvkgskf', 1);
+
+INSERT INTO comments (
+author, text, post_id) 
+VALUES ('Jacob', 'iofioeifmv lgjeogjlg eojewojg', 2);
+
+INSERT INTO comments (
+author, text, post_id) 
+VALUES ('Jacob', 'eotjeoj jskjfiasj fksjfasifh kj', 2);
