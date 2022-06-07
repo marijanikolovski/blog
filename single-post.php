@@ -5,7 +5,7 @@
 
     if (isset($_GET['post_id'])) {
         //$sql = "SELECT * FROM posts WHERE id = {$_GET['post_id']}";
-        $sql = "SELECT p.id, p.title, p.body, p.created_at, a.first_name, a.last_name
+        $sql = "SELECT p.id, p.title, p.body, p.created_at, a.first_name, a.last_name, a.gender
         FROM posts as p INNER JOIN author as a
         ON p.author_id = a.id
         WHERE p.id = {$_GET['post_id']}";
@@ -48,7 +48,7 @@
                 <div class="col-sm-8 blog-main">
                         <div class="blog-post">
                             <h2 class="blog-post-title"><?php echo $post['title'] ?></h2>
-                            <p class="blog-post-meta"><?php echo $post['created_at'] ?> by <a href="#"><?php echo ($post['first_name']) . ' ' . ($post['last_name'])  ?></a></p>
+                            <p class="blog-post-meta" ><?php echo $post['created_at'] ?> by <a class="<?php echo $post['gender']?>" href="#"><?php echo ($post['first_name']) . ' ' . ($post['last_name'])  ?></a></p>
                             <p><?php echo $post['body'] ?></p>
                         </div><!-- /.blog-post -->
                     <?php include ('comments.php') ?>

@@ -38,6 +38,11 @@
     </main><!-- /.container -->
 
     <?php include ('footer.php') ?>
+    <script>
+        document.querySelector('.btn').addEventListener('click', function() {
+            location.href = 'create-post.php';
+        })
+    </script>
 </body>
 
 </html>
