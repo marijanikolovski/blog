@@ -21,3 +21,11 @@ h6,
 .blog-post-title:hover {
     text-decoration: underline;
 }
+
+.male {
+    color: blue;
+}
+
+.female {
+    color: pink;
+}

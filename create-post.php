@@ -59,10 +59,12 @@
                                         echo $errmesage;
                                         } ?></p>
                                 <label for="author">Author</label>
-                                <select type="text" name="author" id="author" placeholder="Select Author">
-                                    <?php foreach($authors as $author) { ?>
-                                        <option value="<?php echo $author['id'] ?>">
-                                                <?php
+                                <select type="text" name="author" class="<?php echo $author['gender']?>" placeholder="Select Author">
+                                    <?php 
+                                        foreach($authors as $author) {
+                                        ?>
+                                        <option class="<?php echo $author['gender']?>" 
+                                            value="<?php echo $author['id'] ?>"><?php
                                                 echo ($author['first_name']) . ' ' . ($author['last_name']) ?>
                                         </option>
                                     <?php } ?>
@@ -77,10 +79,9 @@
                                 <textarea name="body" placeholder="Enter body" rows="10" id="bodyPosts"></textarea><br>
                             </div>
                             <div>
-                                <button type="submit" name="submit">Add post</button>
+                                <button class="btn-add-post" type="submit" name="submit">Add post</button>
                             </div>
                     </form>
-
                 </div><!-- /.blog-post -->
             </div><!-- /.row -->
             <?php include ('sidebar.php') ?>
