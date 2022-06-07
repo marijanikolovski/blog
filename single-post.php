@@ -4,7 +4,12 @@
     session_start();
 
     if (isset($_GET['post_id'])) {
-        $sql = "SELECT * FROM posts WHERE id = {$_GET['post_id']}";
+        //$sql = "SELECT * FROM posts WHERE id = {$_GET['post_id']}";
+        $sql = "SELECT p.id, p.title, p.body, p.created_at, a.first_name, a.last_name
+        FROM posts as p INNER JOIN author as a
+        ON p.author_id = a.id
+        WHERE p.id = {$_GET['post_id']}";
+
         $post =fetch($sql, $connection);
     }
 
@@ -37,27 +42,20 @@
 </head>
 
 <body>
-
     <?php include ('header.php')?>
-
-    <main role="main" class="container">
-        <div class="row">
-            <div class="col-sm-8 blog-main">
-                <div class="blog-post">
-
-                    <h2 class="blog-post-title"><?php echo $post['title'] ?></h2>
-                    <p class="blog-post-meta"><?php echo $post['created_at'] ?> by <a href="#"><?php echo $post['author'] ?></a></p>
-
-                    <p><?php echo $post['body'] ?></p>
-
+        <main role="main" class="container">
+            <div class="row">
+                <div class="col-sm-8 blog-main">
+                        <div class="blog-post">
+                            <h2 class="blog-post-title"><?php echo $post['title'] ?></h2>
+                            <p class="blog-post-meta"><?php echo $post['created_at'] ?> by <a href="#"><?php echo ($post['first_name']) . ' ' . ($post['last_name'])  ?></a></p>
+                            <p><?php echo $post['body'] ?></p>
+                        </div><!-- /.blog-post -->
                     <?php include ('comments.php') ?>
-                </div><!-- /.blog-post -->
-            </div><!-- /.blog-main -->
-        </div><!-- /.row -->
-    </main><!-- /.container -->
-
-<?php include ('sidebar.php') ?>
-
-<?php include('footer.php')?>
+                </div><!-- /.blog-main -->
+                <?php include ('sidebar.php') ?>
+            </div><!-- /.row -->
+        </main><!-- /.container -->
+    <?php include('footer.php')?>
 </body>
 </html>

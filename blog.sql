@@ -42,3 +42,37 @@ VALUES ('Jacob', 'iofioeifmv lgjeogjlg eojewojg', 2);
 INSERT INTO comments (
 author, text, post_id) 
 VALUES ('Jacob', 'eotjeoj jskjfiasj fksjfasifh kj', 2);
+
+CREATE TABLE author (
+	id int NOT NULL AUTO_INCREMENT,
+	first_name varchar(50) NOT NULL,
+	last_name varchar(50) NOT NULL,
+	gender varchar(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+INSERT INTO author (
+first_name, last_name, gender) 
+VALUES ('Jacob', 'Savkovic', 'male');
+
+INSERT INTO author (
+first_name, last_name, gender) 
+VALUES ('Marija', 'Nikolovski', 'female');
+
+ALTER TABLE posts DROP COLUMN author_id;
+
+ALTER TABLE posts
+ADD author_id int;
+
+ALTER TABLE posts
+ADD CONSTRAINT author_id
+FOREIGN KEY (author_id) references author(id);
+
+ALTER TABLE comments DROP COLUMN author_id;
+
+ALTER TABLE comments
+ADD author_id int;
+
+ALTER TABLE comments
+ADD CONSTRAINT author_id
+FOREIGN KEY (author_id) references author(id);
