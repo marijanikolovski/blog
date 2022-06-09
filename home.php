@@ -39,9 +39,20 @@
 
     <?php include ('footer.php') ?>
     <script>
+        // button for create-post.php
         document.querySelector('.btn').addEventListener('click', function() {
             location.href = 'create-post.php';
         })
+    
+        // select author   
+        const select = document.querySelector("select");
+
+        select.addEventListener("change", () => {
+            var id = select.querySelector(`option[value="${select.value}"]`);
+            var a = id.value;
+            location.href = 'home.php?id='+a;
+            console.log(author_id);
+        });
     </script>
 </body>
 
