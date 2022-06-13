@@ -6,7 +6,7 @@
         $body = $_POST['body'];
         $author = $_POST['author'];
         if(empty($title) || empty($body) || empty($author)) {
-            $errmesage = 'All fields are not filled';
+            $errMessage = 'All fields are not filled';
         } else {
             $currentDate = date("Y-m-d h:i");
             $sql = "INSERT INTO posts (
@@ -55,8 +55,8 @@
                     <form class="post" action="create-post.php" method="POST" id="postsForma">
                             <div>
                                 <p><?php
-                                        if (isset($errmesage)) {
-                                        echo $errmesage;
+                                        if (isset($errMessage)) {
+                                        echo $errMessage;
                                         } ?></p>
                                 <label for="author">Author</label>
                                 <select type="text" name="author" class="<?php echo $author['gender']?>" placeholder="Select Author">

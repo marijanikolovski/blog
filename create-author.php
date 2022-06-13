@@ -1,3 +1,26 @@
+<?php
+include ('db.php');
+
+if(isset($_POST['submit'])) {
+    $firstName = $_POST['first_name'];
+    $lastName = $_POST['last_name'];
+    $gender = $_POST['gender'];
+
+    if(empty($firstName) && empty($lastName) && empty($gender)) {
+        $errMessage = 'All fields are not filled';
+    } else {
+        $sql = "INSERT INTO author (
+            first_name, last_name, gender)
+            VALUES ('$firstName', '$lastName', '$gender')";
+         $statement = $connection->prepare($sql);
+         $statement->execute();
+         header("Location: home.php");
+         echo ("Upisi u bazu");
+    }
+}
+?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,24 +48,29 @@
             <div class="col-sm-8 blog-main">
                 <div class="blog-post">
                     <h2>Create new author</h2>
+                    <p><?php
+                        if (isset($errMessage)) {
+                        echo $errMessage;
+                    } ?></p>
+
                         <form method="POST" action="create-author.php">
                         <div>
-                            <label>First Name</label>
+                            <label for="first_name">First Name</label>
                             <input type="text" name="first_name">
                         </div>
                         <div>
-                            <label>Last Name</label>
+                            <label for="last_name">Last Name</label>
                             <input  type="text" name="last_name">
                         </div>
                         <div>
-                            <label for="male">Male</label>
-                            <input name="gender"  type="radio">
+                            <label for="gender">Male</label>
+                            <input name="gender"  type="radio" value="Male">
                         </div>
                         <div>
-                            <label for="female">Female</label>
-                            <input name="gender" type="radio">
+                            <label for="gender">Female</label>
+                            <input name="gender" type="radio" value="Female">
                         </div>
-                        <button>Create Author</button>
+                        <button type="submit" name="submit">Create Author</button>
                     </form>
                 </div><!-- /.blog-post -->
             </div><!-- /.row -->
